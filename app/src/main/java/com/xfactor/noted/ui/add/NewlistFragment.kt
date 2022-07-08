@@ -26,8 +26,6 @@ class NewlistFragment : Fragment() {
 
     private lateinit var newlistViewModel: NewlistViewModel
 
-
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,

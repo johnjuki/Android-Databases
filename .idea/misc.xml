@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/drawable/border.xml" value="0.1045" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/drawable/border_transparent.xml" value="0.1045" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/drawable/ic_compare.xml" value="0.1045" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/drawable/ic_logo.xml" value="0.1045" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/layout/fragment_compare.xml" value="0.1" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/layout/fragment_delete.xml" value="0.1" />
         <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/layout/fragment_listitem.xml" value="0.17798913043478262" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/layout/fragment_newlist.xml" value="0.1" />
+        <entry key="..\:/pg/code/kotlin/pluralsight-others/Android-Databases/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

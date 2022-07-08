@@ -6,12 +6,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.room.Room
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.xfactor.noted.database.AppDatabase
+import com.xfactor.noted.database.List
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java, "list_database").build()
 
         // Setting ActionBar logo
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -28,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val listDao = db.listDao()
+        val lists: List = listDao.getAll()
     }
 }
 
