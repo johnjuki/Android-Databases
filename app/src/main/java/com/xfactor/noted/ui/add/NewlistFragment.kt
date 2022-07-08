@@ -15,7 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.xfactor.noted.ListItem
 import com.xfactor.noted.Lists
@@ -34,14 +34,14 @@ class NewlistFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         newlistViewModel =
-                ViewModelProviders.of(this).get(NewlistViewModel::class.java)
+                ViewModelProvider(this).get(NewlistViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_newlist, container, false)
         val textView: TextView = root.findViewById(R.id.text_newlist)
         val elements: TextView = root.findViewById(R.id.elements_adding)
-        newlistViewModel.listItem.observe(viewLifecycleOwner, Observer {
+        newlistViewModel.listItem.observe(viewLifecycleOwner) {
             textView.text = it.title
             elements.text = getSubItems(it)
-        })
+        }
         val editTitle: AppCompatEditText = root.findViewById(R.id.edit_title)
         editTitle.addTextChangedListener(object :TextWatcher {
             override fun afterTextChanged(s: Editable?) {

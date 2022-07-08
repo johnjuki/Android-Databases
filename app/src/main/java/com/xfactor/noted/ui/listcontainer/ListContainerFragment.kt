@@ -2,7 +2,6 @@ package com.xfactor.noted.ui.listcontainer
 
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xfactor.noted.*
-import kotlinx.android.synthetic.main.fragment_listcontainer.view.*
-import kotlinx.android.synthetic.main.fragment_listitem.view.*
+import com.xfactor.noted.databinding.FragmentListcontainerBinding
+import com.xfactor.noted.databinding.FragmentListitemBinding
 
-private lateinit var statusText : TextView;
+private lateinit var statusText : TextView
+private lateinit var listContainerBinding: FragmentListcontainerBinding
 
 fun updateStatus() {
     if(ListsToCompare.size == 0)  return
@@ -28,27 +28,29 @@ fun updateStatus() {
 
 class ListContainerFragment : Fragment() {
 
-    private var adapter = ListsAdapter(Lists);
+    private var adapter = ListsAdapter(Lists)
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
-        val root = inflater.inflate(R.layout.fragment_listcontainer, container, false)
-        root.all_lists.layoutManager = GridLayoutManager(context, 2)
-        root.all_lists.adapter = adapter
-        statusText = root.findViewById(R.id.status)
+    ): View {
+        listContainerBinding = FragmentListcontainerBinding.inflate(inflater, container, false)
+        listContainerBinding.allLists.layoutManager = GridLayoutManager(context, 2)
+        listContainerBinding.allLists.adapter = adapter
+        statusText = listContainerBinding.status
         updateStatus()
-        return root
+        return listContainerBinding.root
     }
 
 }
 class ListsAdapter(private val dataSet: MutableList<ListItem>) :
     RecyclerView.Adapter<ListsAdapter.ViewHolder>() {
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val listItem: LinearLayout = view.findViewById(R.id.listitem)
+    class ViewHolder(listItemBinding: FragmentListitemBinding) : RecyclerView.ViewHolder(listItemBinding.root) {
+        val listItem: LinearLayout = listItemBinding.listitem
+        val listTitle: TextView = listItemBinding.listTitle
+        val listElements: TextView = listItemBinding.listElements
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
@@ -59,10 +61,10 @@ class ListsAdapter(private val dataSet: MutableList<ListItem>) :
             ListsToCompare.add(dataSet[position])
             updateStatus()
         }
-        val title = viewHolder.listItem.list_title
+        val title = viewHolder.listTitle
         title.text = dataSet[position].title
         title.paintFlags = title.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        viewHolder.listItem.list_elements.text = getSubItems(dataSet[position])
+        viewHolder.listElements.text = getSubItems(dataSet[position])
         val visibility: Int = viewHolder.listItem.visibility
         viewHolder.listItem.visibility = View.GONE
         viewHolder.listItem.visibility = visibility
@@ -72,9 +74,7 @@ class ListsAdapter(private val dataSet: MutableList<ListItem>) :
         return dataSet.size
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_listitem, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(FragmentListitemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
 }

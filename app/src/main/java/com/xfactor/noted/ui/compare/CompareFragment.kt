@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.xfactor.noted.ListsToCompare
 import com.xfactor.noted.R
@@ -36,7 +35,7 @@ class CompareFragment : Fragment() {
         val leftElements: TextView = root.findViewById(R.id.list_compare_left_elements)
         val rightElements: TextView = root.findViewById(R.id.list_compare_right_elements)
 
-        if(ListsToCompare.size !== 2) {
+        if(ListsToCompare.size != 2) {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setTitle("Missing Lists")
             val desc = TextView(context)

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.xfactor.noted.Lists
 import com.xfactor.noted.ListsToCompare
@@ -25,7 +25,7 @@ class DeleteFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
         deleteViewModel =
-                ViewModelProviders.of(this).get(DeleteViewModel::class.java)
+                ViewModelProvider(this).get(DeleteViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_delete, container, false)
         val deleteButtons = root.findViewById<LinearLayout>(R.id.delete_buttons)
 
